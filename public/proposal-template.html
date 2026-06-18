@@ -57,11 +57,11 @@
   .page{
     width:210mm;min-height:297mm;background:#fff;margin:0 auto 24px auto;
     padding:16mm 16mm;position:relative;box-shadow:0 4px 24px rgba(0,0,0,.15);
-    page-break-after:always;
   }
   @media print{
     body{background:#fff;}
-    .page{box-shadow:none;margin:0;}
+    .page{box-shadow:none;margin:0;width:100%;min-height:0;height:297mm;overflow:hidden;page-break-after:always;break-after:page;}
+    .page:last-child{page-break-after:avoid;break-after:avoid;}
   }
   .eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600;}
   .h-title{font-size:30px;font-weight:700;color:var(--ink);margin:4px 0 6px;letter-spacing:-.01em;}
