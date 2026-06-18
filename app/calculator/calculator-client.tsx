@@ -244,8 +244,6 @@ export default function CalculatorClient({ assumptions: serverAssumptions, role,
 
   // UI state
   const [showModal, setShowModal] = useState(false);
-  const [pdfLoading, setPdfLoading] = useState(false);
-  const [pdfError, setPdfError] = useState('');
   const [savedProposalId, setSavedProposalId] = useState<string | null>(proposalId ?? null);
 
   const setA = (key: keyof Assumptions) => (val: number) =>
@@ -319,22 +317,9 @@ export default function CalculatorClient({ assumptions: serverAssumptions, role,
 
   async function generatePDF() {
     if (!savedProposalId) return;
-    setPdfLoading(true);
-    setPdfError('');
-    try {
-      const res = await fetch('/api/generate-pdf', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ proposalId: savedProposalId }),
-      });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error ?? 'PDF generation failed');
-      window.open(json.url, '_blank');
-    } catch (ex: unknown) {
-      setPdfError(ex instanceof Error ? ex.message : 'PDF generation failed');
-    } finally {
-      setPdfLoading(false);
-    }
+    // Open the filled proposal HTML in a new tab — the page auto-triggers the
+    // browser's Print dialog (Ctrl+P / Save as PDF) using the template's A4 print CSS.
+    window.open(`/api/proposal-html?proposalId=${savedProposalId}`, '_blank');
   }
 
   // battery stepper UI (rendered inside the "Full Independence" package card)
@@ -629,12 +614,10 @@ export default function CalculatorClient({ assumptions: serverAssumptions, role,
             <>
               <button
                 onClick={generatePDF}
-                disabled={pdfLoading}
-                className="bg-zinc-900 hover:bg-zinc-700 text-white font-bold px-6 py-2.5 rounded-lg transition-colors disabled:opacity-50"
+                className="bg-zinc-900 hover:bg-zinc-700 text-white font-bold px-6 py-2.5 rounded-lg transition-colors"
               >
-                {pdfLoading ? 'Generating PDF…' : 'Generate & download PDF'}
+                Generate & download PDF
               </button>
-              {pdfError && <span className="text-sm text-red-600 self-center">{pdfError}</span>}
             </>
           )}
         </div>
