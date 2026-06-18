@@ -106,12 +106,17 @@ export async function POST(req: NextRequest) {
   };
 
   // Load and fill HTML template
-  const templatePath = join(process.cwd(), 'public', 'proposal-template.html');
-  let templateHtml: string;
-  try {
-    templateHtml = readFileSync(templatePath, 'utf-8');
-  } catch {
-    return NextResponse.json({ error: 'Template file not found at public/proposal-template.html' }, { status: 500 });
+  const candidates = [
+    join(process.cwd(), 'public', 'proposal-template.html'),
+    join(__dirname, '../../../../public', 'proposal-template.html'),
+    join(__dirname, '../../../../../public', 'proposal-template.html'),
+  ];
+  let templateHtml: string | undefined;
+  for (const p of candidates) {
+    try { templateHtml = readFileSync(p, 'utf-8'); break; } catch { /* try next */ }
+  }
+  if (!templateHtml) {
+    return NextResponse.json({ error: `Template file not found. Tried: ${candidates.join(', ')}` }, { status: 500 });
   }
 
   const customerRaw = proposal.customers as unknown;
