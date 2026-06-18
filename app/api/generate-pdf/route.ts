@@ -21,6 +21,7 @@ import { cookies } from 'next/headers';
 import { rowToAssumptions } from '@/lib/db-assumptions';
 import { computeSnapshot, ProposalInputs } from '@/lib/calculator';
 import { fillTemplate, AddonSettings } from '@/lib/proposal-template';
+import templateHtml from '@/lib/proposal-template-html';
 
 async function launchBrowser() {
   // In production (Vercel / Lambda) use @sparticuz/chromium.
@@ -103,18 +104,7 @@ export async function POST(req: NextRequest) {
     epp_bank_3_months: aRow?.['epp_bank_3_months'] as number | null,
   };
 
-  // Load and fill HTML template — fetch as a static asset (works reliably on Vercel)
-  const host = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : `http://localhost:${process.env.PORT ?? 3000}`;
-  let templateHtml: string;
-  try {
-    const res = await fetch(`${host}/proposal-template.html`);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    templateHtml = await res.text();
-  } catch (err) {
-    return NextResponse.json({ error: `Template fetch failed: ${err instanceof Error ? err.message : err}` }, { status: 500 });
-  }
+  // templateHtml is imported at build time from lib/proposal-template-html.ts
 
   const customerRaw = proposal.customers as unknown;
   const customer = (Array.isArray(customerRaw) ? customerRaw[0] : customerRaw) as { name: string; address?: string; phone?: string };
