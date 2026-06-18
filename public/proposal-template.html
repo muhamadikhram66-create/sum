@@ -144,7 +144,7 @@
     </div>
     <div style="display:inline-block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 18px;">
       <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#a1a1aa;">Potential 10-year savings</div>
-      <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:26px;color:var(--gold-light);">RM{{ful_10yr_saving}}+</div>
+      <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:26px;color:var(--gold-light);">{{ful_10yr_saving}}+</div>
     </div>
   </div>
 
@@ -335,7 +335,7 @@
   <div class="h-title">Choose the package that fits your needs</div>
 
   <div class="pill-row">
-    <div class="pill"><div class="k">Monthly Bill</div><div class="v">RM{{monthly_bill}}</div></div>
+    <div class="pill"><div class="k">Monthly Bill</div><div class="v">{{monthly_bill}}</div></div>
     <div class="pill"><div class="k">Phase</div><div class="v">{{phase_label}}</div></div>
     <div class="pill"><div class="k">System Size</div><div class="v">{{system_size_kwp}} kWp</div></div>
     <div class="pill"><div class="k">Scheme</div><div class="v">{{scheme_label}}</div></div>
@@ -347,12 +347,12 @@
       <span class="badge" style="background:var(--line);color:var(--ink-soft);">Fast Payback</span>
       <h3 style="font-size:17px;margin:10px 0 2px;">Essential</h3>
       <div style="font-size:11.5px;color:var(--muted);margin-bottom:10px;">Most affordable option, quickest payback</div>
-      <div style="font-size:11px;color:var(--muted);text-decoration:line-through;">RM{{ess_original_price}}</div>
-      <div class="price-lg">RM{{ess_final_price}}</div>
+      <div style="font-size:11px;color:var(--muted);text-decoration:line-through;">{{ess_original_price}}</div>
+      <div class="price-lg">{{ess_final_price}}</div>
       <table class="data" style="margin-top:12px;">
         <tr><td>Payback</td><td class="num">{{ess_payback}} yrs</td></tr>
-        <tr><td>Bill after</td><td class="num">RM{{ess_bill_after}}</td></tr>
-        <tr><td>Savings/mo</td><td class="num">RM{{ess_monthly_savings}}</td></tr>
+        <tr><td>Bill after</td><td class="num">{{ess_bill_after}}</td></tr>
+        <tr><td>Savings/mo</td><td class="num">{{ess_monthly_savings}}</td></tr>
         <tr><td>System</td><td>{{panel_count}} × {{panel_wattage}}W panels</td></tr>
         <tr><td>Inverter</td><td>String, {{inverter_kwac}}kW</td></tr>
         <tr><td>Battery</td><td>None</td></tr>
@@ -368,12 +368,12 @@
       <span class="badge" style="background:var(--line);color:var(--ink-soft);">Battery Ready</span>
       <h3 style="font-size:17px;margin:10px 0 2px;">Hybrid Ready</h3>
       <div style="font-size:11.5px;color:var(--muted);margin-bottom:10px;">Add storage anytime, no rework needed</div>
-      <div style="font-size:11px;color:var(--muted);text-decoration:line-through;">RM{{hyb_original_price}}</div>
-      <div class="price-lg">RM{{hyb_final_price}}</div>
+      <div style="font-size:11px;color:var(--muted);text-decoration:line-through;">{{hyb_original_price}}</div>
+      <div class="price-lg">{{hyb_final_price}}</div>
       <table class="data" style="margin-top:12px;">
         <tr><td>Payback</td><td class="num">{{hyb_payback}} yrs</td></tr>
-        <tr><td>Bill after</td><td class="num">RM{{hyb_bill_after}}</td></tr>
-        <tr><td>Savings/mo</td><td class="num">RM{{hyb_monthly_savings}}</td></tr>
+        <tr><td>Bill after</td><td class="num">{{hyb_bill_after}}</td></tr>
+        <tr><td>Savings/mo</td><td class="num">{{hyb_monthly_savings}}</td></tr>
         <tr><td>System</td><td>{{panel_count}} × {{panel_wattage}}W panels</td></tr>
         <tr><td>Inverter</td><td>Hybrid, {{inverter_kwac}}kW</td></tr>
         <tr><td>Battery</td><td>Ready, not installed</td></tr>
@@ -389,12 +389,12 @@
       <span class="badge">{{ful_tag}}</span>
       <h3 style="font-size:17px;margin:10px 0 2px;color:#fff;">Full Independence</h3>
       <div style="font-size:11.5px;color:#a1a1aa;margin-bottom:10px;">Hybrid inverter + battery storage</div>
-      <div style="font-size:11px;color:#a1a1aa;text-decoration:line-through;">RM{{ful_original_price}}</div>
-      <div class="price-lg" style="color:var(--gold-light);">RM{{ful_final_price}}</div>
+      <div style="font-size:11px;color:#a1a1aa;text-decoration:line-through;">{{ful_original_price}}</div>
+      <div class="price-lg" style="color:var(--gold-light);">{{ful_final_price}}</div>
       <table class="data" style="margin-top:12px;color:#fff;">
         <tr><td style="border-color:#3f3f46;">Payback</td><td class="num" style="border-color:#3f3f46;">{{ful_payback}} yrs</td></tr>
-        <tr><td style="border-color:#3f3f46;">Bill after</td><td class="num" style="border-color:#3f3f46;">RM{{ful_bill_after}}</td></tr>
-        <tr><td style="border-color:#3f3f46;">Savings/mo</td><td class="num" style="border-color:#3f3f46;">RM{{ful_monthly_savings}}</td></tr>
+        <tr><td style="border-color:#3f3f46;">Bill after</td><td class="num" style="border-color:#3f3f46;">{{ful_bill_after}}</td></tr>
+        <tr><td style="border-color:#3f3f46;">Savings/mo</td><td class="num" style="border-color:#3f3f46;">{{ful_monthly_savings}}</td></tr>
         <tr><td style="border-color:#3f3f46;">Battery</td><td style="border-color:#3f3f46;">{{battery_size_kwh}} kWh</td></tr>
         <tr><td>Backup</td><td>Limited load, on outage</td></tr>
       </table>
@@ -421,8 +421,8 @@
 
   <table class="data" style="margin-bottom:18px;">
     <tr><th>Metric</th><th>Essential</th><th>Hybrid Ready</th><th>Full Independence</th></tr>
-    <tr><td>1-Year Saving</td><td class="num">RM{{ess_1yr_saving}}</td><td class="num">RM{{hyb_1yr_saving}}</td><td class="num">RM{{ful_1yr_saving}}</td></tr>
-    <tr><td>10-Year Saving</td><td class="num">RM{{ess_10yr_saving}}</td><td class="num">RM{{hyb_10yr_saving}}</td><td class="num">RM{{ful_10yr_saving}}</td></tr>
+    <tr><td>1-Year Saving</td><td class="num">{{ess_1yr_saving}}</td><td class="num">{{hyb_1yr_saving}}</td><td class="num">{{ful_1yr_saving}}</td></tr>
+    <tr><td>10-Year Saving</td><td class="num">{{ess_10yr_saving}}</td><td class="num">{{hyb_10yr_saving}}</td><td class="num">{{ful_10yr_saving}}</td></tr>
     <tr><td>Bill Reduction</td><td class="num">{{ess_bill_reduction_pct}}%</td><td class="num">{{hyb_bill_reduction_pct}}%</td><td class="num">{{ful_bill_reduction_pct}}%</td></tr>
     <tr><td>Direct Consumption</td><td class="num">{{direct_consumption_pct}}%</td><td class="num">{{direct_consumption_pct}}%</td><td class="num">{{direct_consumption_pct}}%</td></tr>
     <tr><td>Export</td><td class="num">{{export_pct}}%</td><td class="num">{{export_pct}}%</td><td class="num">{{ful_export_pct}}%</td></tr>
@@ -460,7 +460,7 @@
         <div style="font-weight:600;font-size:15px;">Extended Care Package</div>
         <div style="font-size:11.5px;color:var(--muted);">Optional add-on — bundles maintenance, insurance, and extended workmanship cover</div>
       </div>
-      <div style="font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;">RM{{addon_price}}</div>
+      <div style="font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;">{{addon_price}}</div>
     </div>
     <table class="data" style="margin-top:12px;">
       <tr><td>Insurance coverage</td><td>{{addon_insurance_years}} years</td></tr>
@@ -536,8 +536,8 @@
     <div>
       <h4 style="font-size:14px;">Payment timeline</h4>
       <div class="label-row"><span>Deposit (refundable, upon confirmation)</span><span class="num">RM1,000</span></div>
-      <div class="label-row"><span>70% progress (upon {{scheme_label}} approval)</span><span class="num">RM{{ess_70pct}}</span></div>
-      <div class="label-row"><span>30% final (upon installation completion)</span><span class="num">RM{{ess_30pct}}</span></div>
+      <div class="label-row"><span>70% progress (upon {{scheme_label}} approval)</span><span class="num">{{ess_70pct}}</span></div>
+      <div class="label-row"><span>30% final (upon installation completion)</span><span class="num">{{ess_30pct}}</span></div>
     </div>
     <div>
       <h4 style="font-size:14px;">Project timeline</h4>
