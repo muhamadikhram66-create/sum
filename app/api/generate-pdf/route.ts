@@ -18,8 +18,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { cookies } from 'next/headers';
-import { readFileSync } from 'fs';
-import { join } from 'path';
 import { rowToAssumptions } from '@/lib/db-assumptions';
 import { computeSnapshot, ProposalInputs } from '@/lib/calculator';
 import { fillTemplate, AddonSettings } from '@/lib/proposal-template';
@@ -105,18 +103,17 @@ export async function POST(req: NextRequest) {
     epp_bank_3_months: aRow?.['epp_bank_3_months'] as number | null,
   };
 
-  // Load and fill HTML template
-  const candidates = [
-    join(process.cwd(), 'public', 'proposal-template.html'),
-    join(__dirname, '../../../../public', 'proposal-template.html'),
-    join(__dirname, '../../../../../public', 'proposal-template.html'),
-  ];
-  let templateHtml: string | undefined;
-  for (const p of candidates) {
-    try { templateHtml = readFileSync(p, 'utf-8'); break; } catch { /* try next */ }
-  }
-  if (!templateHtml) {
-    return NextResponse.json({ error: `Template file not found. Tried: ${candidates.join(', ')}` }, { status: 500 });
+  // Load and fill HTML template — fetch as a static asset (works reliably on Vercel)
+  const host = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : `http://localhost:${process.env.PORT ?? 3000}`;
+  let templateHtml: string;
+  try {
+    const res = await fetch(`${host}/proposal-template.html`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    templateHtml = await res.text();
+  } catch (err) {
+    return NextResponse.json({ error: `Template fetch failed: ${err instanceof Error ? err.message : err}` }, { status: 500 });
   }
 
   const customerRaw = proposal.customers as unknown;
